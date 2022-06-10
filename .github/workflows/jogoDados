@@ -1,0 +1,105 @@
+import java.util.*; //importar a biblioteca que permite chamar a função random
+
+public class jogoDados { // classe publica, ou seja, pode ser acessada por outras classes
+
+  private Random randomNum = new Random(); // atributo/variável privada da função Random (usada para gerar uma corrente de números pseudoaleatórios)
+
+  private enum Status {Continue, WON, LOST}; // atributo/variável privada com um conjunto de constantes predefinidas
+
+  private final static int SNAKE_EYES = 2; // atributo/variavel privada de valor fixo do tipo inteiro que contém o valor 2
+
+  private final static int TREY = 3; // atributo/variavel privada de valor fixo do tipo inteiro que contém o valor 3
+
+  private final static int SEVEN = 7; // atributo/variavel privada de valor fixo do tipo inteiro que contém o valor 7
+
+  private final static int YO_LEVEN = 11; // atributo/variavel privada de valor fixo do tipo inteiro que contém o valor 11
+
+  private final static int BOX_CARS = 12; // atributo/variavel privada de valor fixo do tipo inteiro que contém o valor 12
+
+
+  public void play() //método público que não retorna valor, apenas realiza as instruções e armazena os resultados
+  {
+    int myPoint = 0; // declaração e atribuição do valor 0 à variável local "myPoint" (só pode ser utilizada nesse método, diferentemente dos atributos/variáveis de instância presentes na declaração da classe)
+
+    Status gameStatus; //variável que pode conter as constantes predefinidas de Status (Continue, WON e LOST)
+
+    int sumDice = rollDice(); //declaração e atribuição do valor do método rollDice à variável local sumDice (só pode ser utilizada nesse método, diferentemente dos atributos/variáveis de instância presentes na declaração da classe)
+
+
+    switch (sumDice)  // Abertura do switch, seleção múltipla que tem como função realizar instruções especificas para cada caso. Nessa situação, por exemplo, haverá caminhos de execução específicos que variam de acordo do valor armazenado na variável sumDice.
+
+    case SEVEN: // O valor da variável SEVEN é comparado com o valor armazenado na variável referida no switch (sumDice)
+
+    //caso o valor da variável sumDice seja correspondente ao valor da variável SEVEN, o programa realizará a instrução a seguir:
+    case YO_LEVEN:// O valor da variável YO_SEVEN será comparado com o valor armazenado na variável referida no switch (sumDice)
+
+      gameStatus = Status.WON; // caso o valor armazenado na variável sumDice for correspondente ao valor da variável YO_SEVEN ou da variável SEVEN, o programa realizará a instrução de atribuir à variável GameStatus a constante predefinida/enumeração "WON" da variável Status
+
+    case SNAKE_EYES://O valor da variável SNAKE_EYES é comparado com o valor armazenado na variável referida no switch (sumDice)
+
+    //caso o valor da variável sumDice seja correspondente ao valor da variável SNAKE_EYES, o programa realizará a instrução a seguir:
+
+    case BOX_CARS:// O valor da variável BOX_CARS será comparado com o valor armazenado na variável referida no switch (sumDice)
+
+    //caso o valor armazenado na variável sumDice for correspondente ao valor da variável BOX_CARS, o programa realizará a instrução  seguir:
+
+    case TREY:// O valor da variável BOX_CARS será comparado com o valor armazenado na variável referida no switch (sumDice)
+
+      gameStatus=Status.LOST;// caso o valor armazenado na variável sumDice for correspondente aos valores da variáveis TREY, BOX_CARS ou SNAKE_EYES, o programa realizará a instrução de atribuir à variável GameStatus a constante predefinida/enumeração "LOST" da variável Status
+
+        default:// se nenhum dos valores declarados nos case corresponderem ao valor armazenado na variável referida no switch (sumDice), então o programa realizará as seguintes instruções:
+
+          gameStatus=Status.Continue;//atribuir à variável GameStatus a constante predefinida/enumeração "Continue" da variável Status
+
+          myPoint= sumDice// atribuir à variável myPoint o valor armazenado na variável sumDice
+          System.out.printf("Point is %d\n" , myPoint);//exibir o texto "Point is %d\n" acompanhado do valor da variável myPoint (%d -> operador de endereçamento que representa números inteiros)
+
+          break; //encerra o switch
+    }}
+
+    while (gameStatus = Status.Continue){ // Nesta linha inicia – se um laço de repetição, ou seja, essa instrução irá executar continuamente um bloco de instruções enquanto uma determinada condição dor verdadeira. Neste caso a condição é que o valor da variável gameStatus seja igual a Status.Continue.
+
+      sumDice = rollDice(); //Essa linha pega os valores do método rollDice e os atribui aos valores do sumDice
+
+      if (sumDice == myPoint) // Executa a ação se, e somente se, a condição estabelecida for verdadeira, neste caso é que a variável sunDice tenha o mesmo valor que a variavel myPoint
+
+        gameStatus = Status.WON; //está linha fara com que os valores de gameStatus sejam atribuídos ao Status.WON
+
+      else //Caso a condição anterior não for estabelecida como verdadeira, será efetuada uma nova condição.
+
+        if(sumDice == SEVEN) // Executa a ação se, e somente se, a condição estabelecida for verdadeira, neste caso é que a variável sunDice seja = a variável SEVEN. E como este IF está dentro do outro If, isso só ocorrerá se antes o valor da variável sumDice for diferente de myPoint)
+
+          gameStatus=Status.LOST; //Caso a condição for verdadeira, o programa irá atribuir o valor de Status.LOST a variável gameStatus
+
+      }
+
+      if (gameStatus = Status.WON) // Executa a ação se, e somente se, a condição estabelecida for verdadeira. Neste caso é que a variável gameStatus seja = a variavel Status.WON
+
+        System.out.println("player wins!"); // Se a condição anterior for verdadeira, irá imprimir Strings no output padrão. Neste caso, informando ao usuário que o jogador venceu.
+
+      else // Execução que ocorrerá caso a variável gameStatus não for = a variavel Status.WON
+
+        System.out.println("player loses!");//No caso do IF não for dado como verdadeiro, irá imprimir Strings no output padrão. Neste caso, informando ao usuário que o jogador perdeu.
+
+  }
+
+/*
+* Método onde ocorre o lançamento de dados e a soma deles.
+* Além de apresentar na tela os valores dos dados lançados e o valor de sua soma.
+*/
+
+  public int rollDice() { //Método público inteiro, no qual cria uma classe do tipo integer que permitirá o acesso de códigos externos.
+
+    int die1 = 1 + randomNum.nextInt(6); // Nesta linha define - se que a variavel inteira tem valor 1,e é somado a variável randomNum (que recebe como parâmetro um número pseudoaleatório inteiro entre 0 e 5) resultando em um valor aleatório de 1 a 6
+
+    int die2 = 1 + randomNum.nextInt(6); //Nesta linha define - se que a variavel inteira tem valor 1,e é somado a variável randomNum (que recebe como parâmetro um número pseudoaleatório inteiro entre 0 e 5) resultando em um valor aleatório de 1 a 6
+
+    int sum = die1 + die2; // está linha define que a soma entre as duas variáveis apresentadas anteriormente.
+
+    System.out.printf("player rolled %d + %d= %d\n", die1, die2, sum); ///Nesta linha gera - se uma saída de texto e aspas duplas significando uma string, que no caso é "player rolled", trabalha também com o resultado da soma das variáveis e o valor de cada uma delas.
+
+    return sum; //Essa linha retorna o valor da variavel de soma
+  }
+}
+
+}
