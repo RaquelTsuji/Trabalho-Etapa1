@@ -1,0 +1,21 @@
+/*
+ * Alicia Beatriz Silva - SP3065651
+ * Gisele Pontes da Silva - SP3065707
+ * Isabella Sousa Santana - SP3065081
+ * Isabelli Pereira dos Santos Reis - SP3065308
+ * Pamela Yukari Choutick - SP3064956
+ * Raquel Yukie Tsuji - SP3066762
+ */
+
+
+
+
+/*
+ * Classe principal que cria um novo jogo e chama o método play (começando o jogo).
+ */
+public class Programa { //declaração de classe pública
+	public static void main(String[] args) { //método estático público que não retorna nenhum valor e recebe como parâmetro um vetor de Strings
+	Jogos game=new Jogos(); //cria um novo objeto da classe Jogos
+	game.play(); //usa uma referência de objeto para invocar o método de uma classe
+	}
+}
